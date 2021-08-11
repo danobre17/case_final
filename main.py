@@ -47,9 +47,13 @@ def feature_eng(df):
   return df
 
 
-def main(tempo, token):
+def robot():
   
   while True:
     
     print(datetime.now())
     time.sleep(60)
+    
+  
+if __name__ == '__main__':
+    robot()
