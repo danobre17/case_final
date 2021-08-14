@@ -9,7 +9,7 @@ from ta import add_all_ta_features
 from flask import flask
 from flask import Flask, jsonify, request
 
-app=flask(__name__)
+app=Flask(__name__)
 
 
 
