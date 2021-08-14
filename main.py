@@ -6,7 +6,7 @@ import json
 import os
 import pickle
 from ta import add_all_ta_features
-from flask import flask
+from flask import Flask
 from flask import Flask, jsonify, request
 
 app=Flask(__name__)
