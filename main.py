@@ -6,6 +6,12 @@ import json
 import os
 import pickle
 from ta import add_all_ta_features
+from flask import flask
+from flask import Flask, jsonify, request
+
+app=flask(__name__)
+
+
 
 urlbase = 'https://mighty-bastion-45199.herokuapp.com/'
 
@@ -55,5 +61,29 @@ def robot():
     time.sleep(60)
     
   
-if __name__ == '__main__':
-    robot()
+
+@app.route("/")
+def index():
+    return "Robo Cripto Marvin 42"
+
+@app.route('/wakeup', methods=["POST"])
+def wakeup():
+    """
+    Exemplo de Utilização:
+    
+    import requests
+    url = 'http://127.0.0.1:5000/wakeup'
+    try:
+        x = requests.post(, data = {'time': 10}, timeout=6) 
+    except requests.exceptions.ReadTimeout: 
+        pass
+    """
+
+    token = os.environ.get('MARVIN_TOKEN')
+
+    tempo = int(request.form.get("time"))
+    if not tempo:
+        return "Group token must be provided", None
+    
+    # my_robot é a função com o loop que realiza as compras/ vendas (conforme notebook 2_my_robot.ipynb)
+    robot(tempo, token)
